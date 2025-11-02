@@ -46,7 +46,9 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: astro-resume-theme
+          # Use the repository name automatically from the event payload
+          # `github.event.repository.name` is available for push/pull_request events
+          projectName: ${{ github.event.repository.name }}
           directory: dist
           branch: ${{ github.ref_name }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
