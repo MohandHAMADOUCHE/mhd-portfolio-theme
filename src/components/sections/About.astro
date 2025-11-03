@@ -1,5 +1,6 @@
 ---
 import cv from '../../config/cv.json';
+import OptimizedImage from '../common/OptimizedImage.astro';
 import type { Locale } from '../../i18n/ui';
 import { t } from '../../i18n/ui';
 
@@ -10,7 +11,7 @@ const locale: Locale = Astro.url.pathname.startsWith('/fr') ? 'fr' : 'en';
 const basic: any = (cv as any)?.basic ?? {};
 const aboutSource = locale === 'fr' ? basic?.about : basic?.locales?.en?.about;
 const aboutText = aboutSource ? ('' + aboutSource) : '';
-const email: string | undefined = basic?.email;
+// email removed from UI; route users to the contact form instead
 // Note: About page intentionally hides job label, Ph.D. badge, and name per request.
 ---
 
@@ -19,7 +20,14 @@ const email: string | undefined = basic?.email;
   <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
       <!-- Left: same image and sizing as Hero -->
       <div class="relative flex justify-center self-center">
-        <img class="w-full md:max-w-md lg:max-w-md rounded-full transform scale-90" src={basic?.avatar ?? '/images/avatar.png'} loading="eager" alt={basic?.name} />
+        <OptimizedImage
+          class="w-full md:max-w-md lg:max-w-md rounded-full transform scale-90"
+          src={basic?.avatar ?? '/images/avatar.png'}
+          alt={basic?.name || 'Avatar'}
+          priority={false}
+          sizes="(max-width: 640px) 60vw, (max-width: 1024px) 40vw, 320px"
+          widths={[160, 240, 320, 360, 480]}
+        />
       </div>
 
       <!-- Right: About text only (no job label, no Ph.D. badge, no name) -->
@@ -30,12 +38,12 @@ const email: string | undefined = basic?.email;
           ) : (
             <p>{t(locale, 'aboutFallback', 'I am passionate about DevOps and Cloud.')}</p>
           )}
-          {email && (
-            <p class="pt-2 text-[0.95rem] sm:text-base">
-              {t(locale, 'aboutContactPrompt', 'If you want to get in touch, please reach me via')}{' '}
-              <a class="text-secondary hover:underline" href={`mailto:${email}`}>email</a>.
-            </p>
-          )}
+          <p class="pt-2 text-[0.95rem] sm:text-base">
+            {t(locale, 'aboutContactPrompt', 'If you want to get in touch, please reach me via')}{' '}
+            <a class="text-secondary hover:underline" href={locale === 'fr' ? '/fr/contact' : '/contact'}>
+              {locale === 'fr' ? 'le formulaire de contact' : 'the contact form'}
+            </a>.
+          </p>
         </div>
       </div>
     </div>
