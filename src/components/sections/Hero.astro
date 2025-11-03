@@ -48,12 +48,10 @@ const hasPhD: any = !!((basic as any)?.hasPhD);
                             bg-primary hover:bg-secondary focus:bg-secondary">
                         {t(locale, 'downloadCV', 'Download CV')}
                     </button>
-                    {basic?.email && (
-                        <a href={`mailto:${basic.email}`} title={t(locale, 'contact', 'Contact')}
-                           class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold transition-all duration-200 rounded border border-default hover:bg-background-offset focus:bg-background-offset">
-                            {t(locale, 'contact', 'Contact')}
-                        </a>
-                    )}
+                    <a href={locale === 'fr' ? '/fr/contact' : '/contact'} title={t(locale, 'contact', 'Contact')}
+                       class="inline-flex items-center justify-center px-6 py-3 text-base font-semibold transition-all duration-200 rounded border border-default hover:bg-background-offset focus:bg-background-offset">
+                        {t(locale, 'contact', 'Contact')}
+                    </a>
                 </div>
             </div>
         </div>

@@ -70,7 +70,10 @@ const socialList: any[] = ((globalThis as any)?.Array?.isArray(socialLinks)) ? (
 
         <div class="py-6 md:py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
             <p class="text-offset">© {currentYear} {basic?.name}. All rights reserved.</p>
-            <p class="italic text-offset">Building the future, one line of code at a time 🚀</p>
+            <p class="italic text-offset">
+                Building the future, one line of code at a time
+                <a href="/health" class="hover:text-primary ml-1" aria-label="Health page">🚀</a>
+            </p>
         </div>
     </div>
 </footer>
