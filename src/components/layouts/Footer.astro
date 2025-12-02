@@ -68,8 +68,21 @@ const socialList: any[] = ((globalThis as any)?.Array?.isArray(socialLinks)) ? (
 
         <hr class="border-border" />
 
-        <div class="py-6 md:py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+        <div class="py-6 md:py-8 flex items-center justify-center gap-6 text-sm text-center">
             <p class="text-offset">© {currentYear} {basic?.name}. All rights reserved.</p>
+            <span class="flex items-center gap-2 text-offset">
+                <span>Visites:</span>
+                <span style="display:inline-block;vertical-align:middle;margin:0;padding:0;">
+                    <script type="text/javascript" id="servicewb_158436">
+                    (function() {
+                    var cv = document.createElement("script"); cv.type = "text/javascript"; cv.async = true;
+                    cv.src = "http://www.compteur-visite.com/service.php?v=1.1&id=158436&k=a7593608d96d79246e8e8384b2c869a1&c="+document.cookie;
+                    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(cv, s);
+                    })();
+                    </script>
+                    <noscript><a href="http://www.compteur-visite.com/">Services gratuits pour webmasters</a></noscript>
+                </span>
+            </span>
             <p class="italic text-offset">
                 Building the future, one line of code at a time
                 <a href="/health" class="hover:text-primary ml-1" aria-label="Health page">🚀</a>
